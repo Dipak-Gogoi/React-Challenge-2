@@ -8,6 +8,7 @@ import AllCards from './component/AllCards';
 
 function App() {
   const [data, setData] = useState([]);
+  const [dataVisible, setDataVIsible] = useState(12);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [search, setSearch] = useState();
@@ -41,12 +42,13 @@ function App() {
     try {
       const results = await axios("https://iitm1blt3l.execute-api.ap-southeast-1.amazonaws.com/dev/hosted-events", {
         params: {
-          limit: 12,
+          limit: 428,
           past_events: value,
           search_query: search
         }
       }, );
       setData(results.data.events);
+      // console.log('data', data)
     } catch (error) {
       setIsError(true);
       setTimeout(() => setIsError(false), 10000);
@@ -74,6 +76,10 @@ function App() {
     }
   }
 
+  const showMoreHandle = () => {
+    setDataVIsible((preValue) => preValue + 8)
+  }
+
 
   return (
     <Row style={mainDiv}>
@@ -90,6 +96,8 @@ function App() {
           data={data}
           showPastEvent={showPastEvent}
           showCurrentEvent={showCurrentEvent}
+          dataVisible={dataVisible}
+          showMoreHandle={showMoreHandle}
         />
       </Col>
     </Row>

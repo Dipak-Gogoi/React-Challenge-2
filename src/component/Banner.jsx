@@ -11,7 +11,12 @@ const Banner = (props) => {
     return (
         <div style={bannerDiv}>
             <Row>
-                <Col span={14}>
+                <Col xs={{ span: 24 }}
+                    // sm={{ span: 10 }}
+                    md={{ span: 12 }}
+                    lg={{ span: 12 }}
+                    // xl={{ span: 6}}
+                    xxl={{ span: 12 }}>
                     <h1 style={eventText}>Events</h1>
                     <p style={eventSubText}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
@@ -20,19 +25,25 @@ const Banner = (props) => {
                         quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra
                     </p>
                 </Col>
-                <Col span={2}>
+                <Col xs={{ span: 0 }}
+                    md={{ span: 2 }}
+                    lg={{ span: 2 }}
+                    xl={{ span: 4 }}
+                    xxl={{ span: 2 }}>
                 </Col>
-                <Col xs={{ span: 4 }}
-                    lg={{ span: 6 }}
-                    xxl={{ span: 8 }}>
-                    <img src="../images/Group 3840.png" alt="logo" />
+                <Col xs={{ span: 0 }}
+                    md={{ span: 4 }}
+                    lg={{ span: 8 }}
+                    xxl={{ span: 10 }}>
+                    <img src="../images/Group 3840.png" alt="logo" style={bannerImage} />
                 </Col>
             </Row>
-            <Row style={searchDiv}>
+            <Row style={searchDiv} className="searchDiv">
                 <Col span={10}>
                     <p style={searchText}>Search</p>
                     <Input
                         placeholder="Search"
+                        className="searchInput"
                         onChange={props.handleSearchChange}
                         value={props.search}
                         onKeyPress={props.keyPressed}
@@ -42,9 +53,10 @@ const Banner = (props) => {
                 </Col>
                 <Col span={3}></Col>
                 <Col span={10}>
-                    <p style={searchText}>Past Event</p>
+                    <p style={searchText}>Past Events</p>
                     <Select name="Past Event"
-                        style={{ width: '250px', marginTop: '10px', borderRadius: '5px', }}
+                        style={selectDiv}
+                        className="selectDiv"
                         onChange={props.handleChange}
                         placeholder="Past Event"
                     >
@@ -80,14 +92,19 @@ const eventSubText = {
     marginLeft: '50px',
     color: '#572148',
     fontFamily: 'Nunito',
-    fontSize: '18px',
+    fontSize: '2.3vmin',
     fontWeight: 400,
     textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'
 }
 
+const bannerImage = {
+    // width: '100%',
+    // minWidth: '300px',
+    // height: 'auto'
+}
+
 const searchDiv = {
     position: 'absolute',
-    width: '597px',
     left: 0,
     right: 0,
     marginLeft: 'auto',
@@ -109,13 +126,17 @@ const searchText = {
 const searchInput = {
     position: 'relative',
     marginTop: '10px',
-    width: '250px',
     height: '35px',
     borderRadius: '5px',
 }
 
 const searchImage = {
     position: 'absolute',
-    top: '25%',
+    top: '60%',
     right: '-6%'
+}
+
+const selectDiv = {
+    marginTop: '10px',
+    borderRadius: '5px',
 }

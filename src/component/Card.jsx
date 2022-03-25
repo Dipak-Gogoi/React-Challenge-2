@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, } from 'antd';
+import { Row, Col, Card, Button } from 'antd';
 import { InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
@@ -24,9 +24,11 @@ const Cards = (props) => {
 
     const eventCard = (value) => {
         return (
-            <Col className="gutter-row" style={cardDiv} xs={{ span: 4 }}
+            <Col className="gutter-row" style={cardDiv} xs={{ span: 12 }}
+                md={{ span: 8 }}
                 lg={{ span: 6 }}
-                xxl={{ span: 8 }}>
+                // xl={{ span: 6}}
+                xxl={{ span: 6 }}>
                 <Card
                     hoverable
                     style={cardStyle}
@@ -82,23 +84,28 @@ const Cards = (props) => {
                     </Col>
                     :
                     props.showPastEvent ?
-                        isTrue && isTrue.length > 0 ? isTrue.map((value) => (
+                        isTrue && isTrue.length > 0 ? isTrue.slice(0, props.dataVisible).map((value) => (
                             eventCard(value)
                         ))
                             : <Col span={12} offset={12}>
                                 <p style={noData}>No Event </p>
                             </Col>
                         : props.showCurrentEvent ?
-                            isFalse && isFalse.length > 0 ? isFalse.map((value) => (
+                            isFalse && isFalse.length > 0 ? isFalse.slice(0, props.dataVisible).map((value) => (
                                 eventCard(value)
                             )) : <Col span={12} offset={12}>
                                     <p>No Event </p>
                                 </Col>
-                            : props.data && props.data.length > 0 ? props.data.map((value) => (
+                            : props.data && props.data.length > 0 ? props.data.slice(0, props.dataVisible).map((value) => (
                                 eventCard(value)
                             )) : <Col span={12} offset={12}>
                                     <p>No Event </p>
                                 </Col>}
+
+            {isTrue && isTrue.length > 0 && isFalse && isFalse.length > 0 && props.data && props.data.length > 0 ?
+                <Col span={12} offset={11}>
+                    <Button style={loadMoreButton} onClick={props.showMoreHandle}>Load More</Button>
+                </Col> : ''}
         </Row>
     )
 }
@@ -154,4 +161,16 @@ const noData = {
     fontFamily: 'Prompt',
     fontSize: '16px',
     fontWeight: 600
+}
+
+const loadMoreButton = {
+    marginTop: '78px',
+    border: '1px solid #CCCCCC',
+    color: '#fffff',
+    borderRadius: '35px',
+    padding: '0px 15px',
+    color: '#141B25',
+    fontFamily: 'Prompt',
+    fontSize: '18px',
+    fontWeight: 400,
 }

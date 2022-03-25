@@ -7,7 +7,7 @@ const AllCards = (props) => {
     return (
         <Row style={allCarsDiv}>
             <Col span={24}>
-                <p style={eventText}>250 + Events</p>
+                <p style={eventText}>250+ Events</p>
             </Col>
             <Col span={24}>
                 <Cards
@@ -15,6 +15,8 @@ const AllCards = (props) => {
                     data={props.data}
                     showPastEvent={props.showPastEvent}
                     showCurrentEvent={props.showCurrentEvent}
+                    dataVisible={props.dataVisible}
+                    showMoreHandle={props.showMoreHandle}
                 />
             </Col>
         </Row>
